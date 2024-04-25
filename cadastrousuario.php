@@ -1,6 +1,8 @@
 <?php
   require_once "topo.php";
-?>
+
+
+    ?>
 
 <!doctype html>
 <html lang="en">
@@ -10,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>SIS Completão - Login</title>
+    <title>SIS Completão - Cadastro</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -75,18 +77,20 @@
             $nome="";
             $email="";
             $senha="";
+            $idstatus="";
             $acao="novo";
         }
         
         if($acao=="novo" && $id==0 && !empty($idusuario)){
           echo "<script>window.alert('Salvo com sucesso')</script>";
-          $sql = "INSERT INTO tbusuario (nome, email, senha) VALUES ('".$nome."','".$email."','".$senha."')";
+          $sql = "INSERT INTO tbusuario (nome, email, senha, idstatus) VALUES ('".$nome."','".$email."','".$senha."','".$idstatus."')";
           //echo $sql;
           $conn->exec($sql);
           $id=0;
           $acao="novo";
           $nome="";
           $email="";
+          $idstatus="";
           $senha="";
           
       }
@@ -96,13 +100,11 @@
     <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Faça seu cadastro</h1>
 
-    <div class="for#m-floating">
+    <div class="form-floating">
     <?php
       if($id>0 && $nome!="")
         $acao="atualizar"; ?>
       <input type="hidden" name="acao" value="<?php echo $acao;?>">
-
-      
 
     <div class="form-floating">
       <input type="nome" name="nome" class="form-control" id="floatingInput" placeholder="Digite seu nome">
